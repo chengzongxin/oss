@@ -7,6 +7,10 @@ from signature_model import SignatureModel
 from upload_oss import getUserLoginData, uploadAudioToOSS, uploadOss
 
 import os
+import datetime
+
+current_time = datetime.datetime.now()
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 
 def collect_file_paths_exclude_hidden():
     # 获取当前工作目录
@@ -34,8 +38,8 @@ def collect_file_paths_exclude_hidden():
 
 def write_txt(path: str, url: str):
     # 在当前目录下创建一个新文件
-    output_filename = 'file_paths.txt'
-    with open(output_filename, 'w') as output_file:
+    output_filename = formatted_time + '.txt'
+    with open(output_filename, 'a') as output_file:
         output_file.write(path + '\n')
         output_file.write(url + '\n')
     
